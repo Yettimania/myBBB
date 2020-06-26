@@ -23,7 +23,7 @@ set si "Smart indent
 set wrap "Wrap Lines
 
 " expand tabs into spaces
-" set expandtab
+set expandtab
 
 " when using the >> or << commands, shift lines by 4 spaces
 set shiftwidth=4
@@ -59,5 +59,14 @@ map <C-t> :NERDTreeToggle<CR>
 " Run Julia Files
     nnoremap <C-j> <esc>:w<enter>:! julia %:p<enter>
     inoremap <C-j> <esc>:w<enter>:! julia %:p<enter>
+
+" Commenting in C
+map <C-c> :s/^/\/\//<CR>
+map <C-u> :s/^\/\///<CR>
+
+" Make and compile file 
+map <C-m> :!make<enter>:!%:r<enter>
+
+
 
 

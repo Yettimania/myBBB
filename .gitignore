@@ -1,0 +1,7 @@
+#Ignore everything
+/*
+
+#Except these folders
+!gpioLED/
+!makeLED/
+!TSL2561/

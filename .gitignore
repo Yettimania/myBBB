@@ -5,3 +5,5 @@
 !gpioLED/
 !makeLED/
 !TSL2561/
+!bin/
+!.vimrc

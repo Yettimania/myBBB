@@ -24,24 +24,47 @@ int main(){
 
     // Setup prior to sending data
     // setOscillator, setBrightness, Blinkoff
-    char setupCommands[3] = {0x21,0xef,0x81};
-	if (write(file, setupCommands, 3) != 3){
-        perror("Failed to setup display\n");
+    char setOsc[1] = {0x21};
+    char setBrightness[1] = {0xef};
+    char blinkOff[1] = {0x81};
+
+	if (write(file, setOsc, 1) != 1){
+        perror("Failed to start oscillator\n");
+        return 1;
+    }
+	if (write(file, setBrightness, 1) != 1){
+        perror("Failed to set brightness\n");
+        return 1;
+    }
+	if (write(file, blinkOff, 1) != 1){
+        perror("Failed to write blink register\n");
         return 1;
     }
 
-	usleep(50);
+    usleep(50000);
 
-    printf("Setup complete. Sending commands...\n");
+    printf("Setup complete.\n");
 
-	char registerPtr[1] = {0x00};
-    write(file, registerPtr, 1);
+    // Now we can begin sending commands
+    printf("Turning all LEDs on...\n");
 
-    char setLED[1] = {0xff};
-    // Set all LEDs on
-    for (int i=0; i < 10; i++){
-        write(file, setLED, 1);
-    }
+	char onCommand[17] = {0x00,0xff,0xff,0xff,0xff\
+                               ,0xff,0xff,0xff,0xff\
+                               ,0xff,0xff,0xff,0xff\
+                               ,0xff,0xff,0xff,0xff};
+
+    write(file,onCommand,17);
+
+    usleep(5000000);
+
+    printf("Turning all LEDs off...\n");
+
+	char offCommand[17] = {0x00,0x00,0x00,0x00,0x00\
+                               ,0x00,0x00,0x00,0x00\
+                               ,0x00,0x00,0x00,0x00\
+                               ,0x00,0x00,0x00,0x00};
+
+    write(file,offCommand,17);
 
 	close(file);
 	

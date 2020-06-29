@@ -1,5 +1,5 @@
 CC=cc
-TARGET=userDisplay
+TARGET=HT16K33
 
 all: clean $(TARGET)
 

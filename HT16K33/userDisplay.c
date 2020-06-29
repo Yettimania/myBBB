@@ -7,7 +7,7 @@
 
 #include "HT16K33.h"
 
-static char digits[10] = { 0x3f, 0x06, 0x5b, 0x27, 0x66, 0x6d, 0xfd, 0x07, 0x7f, 0x67 };
+static char digits[10] = { 0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0xfd, 0x07, 0x7f, 0x67 };
 static char usedReg[4] = { 0x00, 0x02, 0x06, 0x08 };
 
 int
@@ -55,17 +55,17 @@ int main() {
     initialize(file);
 
     // Display user input
-    char display[4] = "1234";
+    char display[] = "2094";
     char buffer[2] = { };
     
     //Find correct register and store in buffer
     //Find correct digit display to write to register
     //Update display left to right.
+    int x;
     for (int i=0;i<4;i++) {
         buffer[0] = usedReg[i];
-        buffer[1] = digits[2];
-        printf("Reg Location: %x\n", buffer[0]);
-        printf("LED Value: %x\n", buffer[1]);
+        x = display[i] - '0'; //Corrects variable for ascii value based on '0'
+        buffer[1] = digits[x];
         write(file,buffer,2);
     }
 

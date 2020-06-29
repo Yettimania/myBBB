@@ -8,7 +8,6 @@
 #include "HT16K33.h"
 
 static char digits[10] = { 0x3f, 0x06, 0x5b, 0x27, 0x66, 0x6d, 0xfd, 0x07, 0x7f, 0x67 };
-
 static char usedReg[4] = { 0x00, 0x02, 0x06, 0x08 };
 
 int
@@ -53,7 +52,6 @@ int main() {
 	}
 
     // Setup prior to sending data
-    // setOscillator, setBrightness, Blinkoff
     initialize(file);
 
     // Display user input
@@ -65,10 +63,10 @@ int main() {
     //Update display left to right.
     for (int i=0;i<4;i++) {
         buffer[0] = usedReg[i];
-        buffer[1] = digits[display[0]];
+        buffer[1] = digits[2];
+        printf("Reg Location: %x\n", buffer[0]);
+        printf("LED Value: %x\n", buffer[1]);
         write(file,buffer,2);
-        buffer[0] = 0;
-        buffer[1] = 0;
     }
 
     printf("Displaying user input...\n");
@@ -83,6 +81,8 @@ int main() {
                               ,0xff,0xff,0xff,0xff};
 
     write(file,onCommand,17);
+
+    usleep(2000000);
 
     printf("Turning all LEDs off...\n");
 

@@ -55,7 +55,7 @@ int main() {
     initialize(file);
 
     // Display user input
-    char display[] = "2094";
+    char display[] = "1984";
     char buffer[2] = { };
     
     //Find correct register and store in buffer

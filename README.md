@@ -4,11 +4,11 @@ Series of programs written in C for use with the BeagleBone Black. Started with 
 
 We love the BBB!
 
-## makeLED
+## makeLED - Onboard LED
 
 Simple C program that flashes the onboard user LED.
 
-## gpioLED
+## gpioLED - Basic Example
 
 ## TSL2561
 

@@ -2,7 +2,7 @@ IDIR = ../include
 CC=cc
 CFLAGS=-I$(IDIR)
 
-ODIR=obj
+ODIR=../obj
 
 TARGET=userDisplay
 

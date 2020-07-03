@@ -5,13 +5,18 @@ Date: July 03, 2020
 
 /* These are the used registers for the 7 segment display
 that need to be accessed to write the valid characters.*/
+#include <stdio.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <linux/i2c.h>
+#include <linux/i2c-dev.h>
+#include <unistd.h>
+#include <HT16K33.h>
 
-#include "HT16K33.h"
+static char usedReg[4] = { 0x00, 0x02, 0x06, 0x08 };
 
-static char usedReg[4] = { 0x00, 0x02, 0x06, 0x08 );
-
-static int
-startOscillation(void){
+int
+startOscillation(int file){
 
    char cmd[1] = {0x21};
 
@@ -22,7 +27,7 @@ startOscillation(void){
 }
 
 int
-setBrightness(int x){
+setBrightness(int file, int x){
 
    char cmd[1] = {0xef};
 
@@ -38,7 +43,7 @@ setBrightness(int x){
 }
 
 int
-blink(int x){
+blink(int file, int x){
    char cmd[1] = {0x81};
    if (write(file, cmd, 1) != 1){
        perror("Failed to write blink register\n");

@@ -17,7 +17,7 @@ Below is the folder structure of the BBB. All files are simply in the home direc
 When using the makefile, it will store .o files in `obj` and compile the static libraries into the `lib` folder.
 
 ## Libraries
-1. HT16K33 - Used to contorl an external 7 segment display over i2c.
+1. *HT16K33* - Used to contorl an external 7 segment display over i2c.
 
 ## Programs
 

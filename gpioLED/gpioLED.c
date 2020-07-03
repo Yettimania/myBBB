@@ -10,8 +10,8 @@ void writeLED(char filename[], char value[]);
 
 int main (){
 	writeLED("/direction", "out"); // set direction for pin
-    printf("Beginning to blink LED 10 times.\n");
-    for (int i=0;i<10;i++){
+    printf("Beginning to blink LED 5 times.\n");
+    for (int i=0;i<5;i++){
         writeLED("/value", "1");
         sleep(1);
         writeLED("/value", "0");

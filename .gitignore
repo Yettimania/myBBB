@@ -2,11 +2,6 @@
 /*
 
 #Except these folders
-!gpioLED/
-!makeLED/
-!TSL2561/
-!HT16K33/
-!libHT16K33/
 !include/
 !src/
 !bin/

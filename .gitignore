@@ -9,7 +9,6 @@
 !libHT16K33/
 !include/
 !src/
-!lib/
 !bin/
 !makefile
 !README.md

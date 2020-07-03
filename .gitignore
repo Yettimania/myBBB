@@ -11,4 +11,5 @@
 !src/
 !lib/
 !bin/
+!makefile
 !README.md

@@ -4,22 +4,20 @@ Series of programs written in C for use with the BeagleBone Black. Started with 
 
 We love the BeagleBoneBlack and Linux!!
 
-## Organization
+## Organization and Folder Structure
 
 Below is the folder structure of the BBB. All files are simply in the home directory; including unique libraries and header files that I've developed.
 
-[include] contains all the header files that are created and used for BBB
+`include`{:.bash} contains all the header files that are created and used for BBB
 
-[src] these are all the .c files that I've created, used on the BBB
+`src`{:.bash} these are all the .c files that I've created, used on the BBB
 
-[makefile] The makefile has a number of utilizations. It's primary use is to generate libraries that have been created for specific devices I have. The makefile will look for a [lib] and [obj] folder. These folders should be create at the same level as the other folders.
+`makefile`{:.bash} The makefile has a number of utilizations. It's primary use is to generate libraries that have been created for specific devices I have. The makefile will look for a [lib] and [obj] folder. These folders should be create at the same level as the other folders.
 
-When using the makefile, it will store .o files in [obj] and compile the static libraries into the [lib] folder.
+When using the makefile, it will store .o files in `obj`{:.bash} and compile the static libraries into the `lib`{:.bash} folder.
 
 ## Libraries
 1. HT16K33 - Used to contorl an external 7 segment display over i2c.
-
-[src]
 
 ## Programs
 

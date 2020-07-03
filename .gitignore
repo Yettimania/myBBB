@@ -8,6 +8,7 @@
 !HT16K33/
 !libHT16K33/
 !include/
+!src/
 !lib/
 !bin/
 !README.md

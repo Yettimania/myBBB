@@ -7,8 +7,8 @@
 #include<HT16K33.h>
 
 static char digits[10] = { 0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0xfd, 0x07, 0x7f, 0x67 };
-static char usedReg[4] = { 0x00, 0x02, 0x06, 0x08 };
 
+static char usedReg[4] = { 0x00, 0x02, 0x06, 0x08};
 
 int main() {
 	int file;
@@ -31,7 +31,7 @@ int main() {
     blink(file,1);
 
     // Display user input
-    char display[] = "1984";
+    char display[] = "3210";
     char buffer[2] = { };
     
     //Find correct register and store in buffer
@@ -46,28 +46,6 @@ int main() {
     }
 
     printf("Displaying user input...\n");
-
-    usleep(5000000);
-
-    printf("Turning all LEDs on ...\n");
-
-	char onCommand[17] = {0x00,0xff,0xff,0xff,0xff\
-                              ,0xff,0xff,0xff,0xff\
-                              ,0xff,0xff,0xff,0xff\
-                              ,0xff,0xff,0xff,0xff};
-
-    write(file,onCommand,17);
-
-    usleep(2000000);
-
-    printf("Turning all LEDs off...\n");
-
-	char offCommand[17] = {0x00,0x00,0x00,0x00,0x00\
-                               ,0x00,0x00,0x00,0x00\
-                               ,0x00,0x00,0x00,0x00\
-                               ,0x00,0x00,0x00,0x00};
-
-    write(file,offCommand,17);
 
 	close(file);
 	

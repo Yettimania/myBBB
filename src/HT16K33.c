@@ -13,10 +13,12 @@ that need to be accessed to write the valid characters.*/
 #include <unistd.h>
 #include <HT16K33.h>
 
+static char digits[10] = { 0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0xfd, 0x07, 0x7f, 0x67};
+
 static char usedReg[4] = { 0x00, 0x02, 0x06, 0x08 };
 
 int
-startOscillation(int file){
+startOscillation(int file) {
 
    char cmd[1] = {0x21};
 
@@ -27,7 +29,7 @@ startOscillation(int file){
 }
 
 int
-setBrightness(int file, int x){
+setBrightness(int file, int x) {
 
    char cmd[1] = {0xef};
 
@@ -43,10 +45,25 @@ setBrightness(int file, int x){
 }
 
 int
-blink(int file, int x){
+blink(int file, int x) {
    char cmd[1] = {0x81};
    if (write(file, cmd, 1) != 1){
        perror("Failed to write blink register\n");
        return 1;
    }
+}
+
+int
+setDisplay(int file, char x[4]) {
+    int value;
+    char buffer[2] = { };
+    for (int i=0;i<4;i++) {
+        buffer[0] = usedReg[i];
+        value = x[i] - '0';
+        buffer[1] = digits[value]; 
+        if (write(file,buffer,2) !=2) {
+            perror("failed to write display register\n");
+            return 1;
+       }
+    }
 }

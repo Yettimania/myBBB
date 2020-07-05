@@ -31,19 +31,22 @@ int main() {
     blink(file,1);
 
     // Display user input
-    char display[] = "3210";
-    char buffer[2] = { };
+    //char display[] = "3210";
+    //char buffer[2] = { };
     
     //Find correct register and store in buffer
     //Find correct digit display to write to register
     //Update display left to right.
-    int x;
-    for (int i=0;i<4;i++) {
-        buffer[0] = usedReg[i];
-        x = display[i] - '0'; //Corrects variable for ascii value based on '0'
-        buffer[1] = digits[x];
-        write(file,buffer,2);
-    }
+    //int x;
+//    for (int i=0;i<4;i++) {
+//        buffer[0] = usedReg[i];
+//        x = display[i] - '0'; //Corrects variable for ascii value based on '0'
+//        buffer[1] = digits[x];
+//        write(file,buffer,2);
+//    }
+    setDisplay(file,"1234");
+    usleep(50000);
+    setDisplay(file,"9876");
 
     printf("Displaying user input...\n");
 

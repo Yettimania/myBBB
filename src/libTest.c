@@ -6,10 +6,6 @@
 #include<unistd.h>
 #include<HT16K33.h>
 
-static char digits[10] = { 0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0xfd, 0x07, 0x7f, 0x67 };
-
-static char usedReg[4] = { 0x00, 0x02, 0x06, 0x08};
-
 int main() {
 	int file;
 
@@ -27,25 +23,11 @@ int main() {
 
     // Setup prior to sending data
     startOscillation(file);
-    setBrightness(file,1);
+    setBrightness(file,15);
     blink(file,1);
 
-    // Display user input
-    //char display[] = "3210";
-    //char buffer[2] = { };
-    
-    //Find correct register and store in buffer
-    //Find correct digit display to write to register
-    //Update display left to right.
-    //int x;
-//    for (int i=0;i<4;i++) {
-//        buffer[0] = usedReg[i];
-//        x = display[i] - '0'; //Corrects variable for ascii value based on '0'
-//        buffer[1] = digits[x];
-//        write(file,buffer,2);
-//    }
-    setDisplay(file,"1234");
-    usleep(50000);
+    setDisplay(file,"-234");
+    usleep(5000000);
     setDisplay(file,"9876");
 
     printf("Displaying user input...\n");

@@ -59,27 +59,31 @@ setDisplay(int file, char x[]) {
     int value,regCount;
     size_t LEN = strlen(x);
     char buffer[2] = { };
+    char *ptr;
+    ptr = buffer;
 
-    printf("Display string is: %s\n",x);
+    printf("Input memory location: %p\n",x);
 
     regCount = 0;
 
     for (int i=0;i<LEN;i++) {
-        buffer[0] = usedReg[regCount];
+        ptr[0] = usedReg[regCount];
         
         if ( (int) x[i] == 45 ) {
-            buffer[1] = 0x40;
+            ptr[1] = 0x40;
             regCount++;
         } else if ( (int) x[i] == 46) {
-            buffer[0] = usedReg[regCount - 1];
-            buffer[1] = digits[value] | 0x80; 
+            ptr[0] = usedReg[regCount - 1];
+            ptr[1] = digits[value] | 0x80; 
         } else {
             value = x[i] - '0';
-            buffer[1] = digits[value]; 
+            ptr[1] = digits[value]; 
             regCount++;
         }
-        printf("writing to reg: %x\n",buffer[0]);
-        printf("Writing reg value: %x\n",buffer[1]);
+
+        printf("Buffer 0 Address: %x\n", &ptr[0]);
+        printf("Buffer 1 Address: %x\n", &ptr[1]);
+
         if (write(file,buffer,2) !=2) {
             perror("failed to write display register\n");
             return 1;

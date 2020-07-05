@@ -26,7 +26,7 @@ int main() {
     setBrightness(file,15);
     blink(file,1);
 
-    setDisplay(file,"-234");
+    setDisplay(file,"12.34");
     usleep(5000000);
     setDisplay(file,"9876");
 

@@ -28,7 +28,7 @@ int main() {
 
     setDisplay(file,"12.34");
     usleep(5000000);
-    setDisplay(file,"9876");
+    setDisplay(file,"-876");
 
     printf("Displaying user input...\n");
 

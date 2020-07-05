@@ -58,7 +58,6 @@ int
 setDisplay(int file, char x[]) {
     int value,regCount;
     size_t LEN = strlen(x);
-    char minus[1] = {0x40};
     char buffer[2] = { };
 
     printf("Display string is: %s\n",x);
@@ -69,7 +68,7 @@ setDisplay(int file, char x[]) {
         buffer[0] = usedReg[regCount];
         
         if ( (int) x[i] == 45 ) {
-            buffer[1] = minus[0];
+            buffer[1] = 0x40;
             regCount++;
         } else if ( (int) x[i] == 46) {
             buffer[0] = usedReg[regCount - 1];

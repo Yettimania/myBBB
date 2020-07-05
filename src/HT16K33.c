@@ -56,23 +56,31 @@ blink(int file, int x) {
 
 int
 setDisplay(int file, char x[]) {
-    int value;
+    int value,regCount;
     size_t LEN = strlen(x);
     char minus[1] = {0x40};
     char buffer[2] = { };
 
     printf("Display string is: %s\n",x);
 
-    for (int i=0;i<4;i++) {
-        buffer[0] = usedReg[i];
+    regCount = 0;
+
+    for (int i=0;i<LEN;i++) {
+        buffer[0] = usedReg[regCount];
         
         if ( (int) x[i] == 45 ) {
             buffer[1] = minus[0];
+            regCount++;
+        } else if ( (int) x[i] == 46) {
+            buffer[0] = usedReg[regCount - 1];
+            buffer[1] = digits[value] | 0x80; 
         } else {
             value = x[i] - '0';
             buffer[1] = digits[value]; 
+            regCount++;
         }
-
+        printf("writing to reg: %x\n",buffer[0]);
+        printf("Writing reg value: %x\n",buffer[1]);
         if (write(file,buffer,2) !=2) {
             perror("failed to write display register\n");
             return 1;

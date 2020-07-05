@@ -8,7 +8,7 @@ CFLAGS=-I${IDIR}
 LFLAGS=-L${LDIR}
 
 # Used to build libraries specific to the beaglebone black
-all: libHT16K33.a
+all: libHT16K33.a libTest
 
 libHT16K33.a: ${SDIR}HT16K33.c ${IDIR}HT16K33.h HT16K33.o
 	ar -rs ${LDIR}libHT16K33.a ${ODIR}HT16K33.o
@@ -31,7 +31,7 @@ makeLED: ${SDIR}makeLED.c
 	$(CC) -c ${SDIR}makeLED.c -o ${ODIR}makeLED.o
 	$(CC) -o makeLED ${ODIR}makeLED.o
 
-libTest: ${SDIR}libTest.c
+libTest: ${SDIR}libTest.c ${LDIR}libHT16K33.a
 	$(CC) -c ${SDIR}libTest.c -o ${ODIR}libTest.o ${CFLAGS} ${LFLAGS} -lHT16K33
 	$(CC) -o libTest ${ODIR}libTest.o ${CFLAGS} ${LFLAGS} -lHT16K33
 
